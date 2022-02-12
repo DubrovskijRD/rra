@@ -76,6 +76,10 @@ class MyModelView(sqla.ModelView):
         return super().index_view()
 
     def is_accessible(self):
+        self.can_edit = False
+        self.can_create = False
+        self.can_delete = False
+
         condition = (current_user.is_active and
                      current_user.is_authenticated)
         if self.roles:
@@ -94,7 +98,7 @@ class MyModelView(sqla.ModelView):
             if current_user.has_role(role):
                 self.can_edit = True
                 break
-        print(self.can_edit, self.can_delete)
+        print(current_user)
         return condition
 
     def _handle_view(self, name, **kwargs):
@@ -112,10 +116,12 @@ class MyModelView(sqla.ModelView):
 
 def admin_views():
     return (
-        MyModelView(User, db.session, roles=[Roles.ADMIN.value]),
+        MyModelView(User, db.session, roles=[Roles.ADMIN.value], name="Пользователи"),
         # MyModelView(Role, db.session, roles=[Roles.ADMIN.value]),
 
-        MyModelView(RRA, db.session),
-        MyModelView(AutoCategory, db.session, roles=[Roles.ADMIN.value, Roles.EDITOR.value], category="catalog"),
-        MyModelView(CheckStatus, db.session, roles=[Roles.ADMIN.value, Roles.EDITOR.value], category="catalog"),
+        MyModelView(RRA, db.session, name="РРА"),
+        MyModelView(AutoCategory, db.session, roles=[Roles.ADMIN.value, Roles.EDITOR.value],
+                    category="Каталоги", name="Категории авто"),
+        MyModelView(CheckStatus, db.session, roles=[Roles.ADMIN.value, Roles.EDITOR.value],
+                    category="Каталоги", name="Да/Нет"),
     )

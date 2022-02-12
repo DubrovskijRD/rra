@@ -3,18 +3,24 @@
 {{ super() }}
 <div class="container">
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <h1>RRA</h1>
+        <div class="col-sm-10 col-sm-offset-1 mx-auto text-center">
+
+            <div>
+                <img src="{{ url_for('static', filename = 'img/logo.png') }}" width="128"  >
+
+            </div>
+
+            <h1>Реестр Реализованых Авто</h1>
 
             {% if current_user.is_authenticated %}
-            <p> ...SEARCH... </p>
+            <p>Перейти к <a href="{{ url_for('rra.index_view')}}">реестру</a></p>
             {% endif %}
             {% if not current_user.is_authenticated %}
             <p>
-                You can use search after <a class="badge" href="{{ url_for('security.login') }}">login</a>.
+                Для использования реестра вам необходимо <a class="link" href="{{ url_for('security.login') }}">войти</a> в систему.
             </p>
             <p>
-                <a class="btn btn-outline-primary" href="{{ url_for('security.login') }}">login</a> <a class="btn btn-outline-success" href="{{ url_for('security.register') }}">register</a>
+                <a class="btn btn-outline-primary" href="{{ url_for('security.login') }}">Вход</a> <a class="btn btn-outline-success" href="{{ url_for('security.register') }}">Регистрация</a>
             </p>
             {% endif %}
         </div>

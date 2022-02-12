@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class Roles(Enum):
-    ADMIN = 'admin'
-    EDITOR = 'editor'
+    ADMIN = 'Админ'
+    EDITOR = 'Редактор'
 
 
 class CheckStatusList(Enum):
@@ -15,3 +15,5 @@ class CheckStatusList(Enum):
 
 class AutoCategoryList(Enum):
     TRACK = "грузовой"
+    AUTO = "легковой"
+    CYCKE = "мотоцикл"

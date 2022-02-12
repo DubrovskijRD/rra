@@ -32,9 +32,20 @@ class User(db.Model, UserMixin):
     email = Column(String(255), unique=True)
     password = Column(String(255))
     active = Column(Boolean())
-    confirmed_at = Column(DateTime())
     roles = relationship('Role', secondary=roles_users,
                          backref=backref('users', lazy='dynamic'))
+
+    column_labels = dict(
+        first_name="Имя",
+        last_name="Фамилия",
+        model="Модель",
+        email="Почта",
+        monitoring="Мониторинг",
+        password="Пароль",
+        active="Активный",
+        confirmed_at="CAN",
+        roles="Роль",
+    )
 
     def __str__(self):
         return self.email

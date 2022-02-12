@@ -1,6 +1,5 @@
-from flask_security import RoleMixin, UserMixin
 from sqlalchemy import Column, Table, Integer, Boolean, DateTime, String, Text, ForeignKey, func
-from sqlalchemy.orm import relationship, backref
+
 
 from .db import db
 
@@ -88,7 +87,9 @@ class RRA(db.Model):
         mounting="Возможность установки",
         pyrus_link="Pyrus",
         docs="Материалы",
-        note="Примечание"
+        note="Примечание",
+        created_at="Дата создания",
+        updated_at="Дата изменения"
     )
     column_labels.update(
         {
