@@ -5,4 +5,5 @@ Flask-Admin==1.6.0
 Flask-Babel==2.0.0
 Flask-Security==3.0.0
 Flask-SQLAlchemy==2.5.1
+gunicorn==20.1.0
 SQLAlchemy==1.4.31
