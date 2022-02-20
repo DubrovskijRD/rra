@@ -120,8 +120,10 @@ def admin_views():
         # MyModelView(Role, db.session, roles=[Roles.ADMIN.value]),
 
         MyModelView(RRA, db.session, name="РРА"),
-        MyModelView(AutoCategory, db.session, roles=[Roles.ADMIN.value, Roles.EDITOR.value],
-                    category="Каталоги", name="Категории авто"),
-        MyModelView(CheckStatus, db.session, roles=[Roles.ADMIN.value, Roles.EDITOR.value],
-                    category="Каталоги", name="Да/Нет"),
+
+        # uncomment for add catalog control
+        # MyModelView(AutoCategory, db.session, roles=[Roles.ADMIN.value, Roles.EDITOR.value],
+        #             category="Каталоги", name="Категории авто"),
+        # MyModelView(CheckStatus, db.session, roles=[Roles.ADMIN.value, Roles.EDITOR.value],
+        #             category="Каталоги", name="Да/Нет"),
     )
