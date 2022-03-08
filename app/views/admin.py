@@ -66,6 +66,8 @@ class MyModelView(sqla.ModelView):
                 ]
             ]
         self.column_filters = filters
+        if hasattr(model, 'column_list'):
+            self.column_list = model.column_list
         super().__init__(model, session, **kwargs)
 
     @expose('/')

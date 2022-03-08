@@ -1,6 +1,5 @@
 from sqlalchemy import Column, Table, Integer, Boolean, DateTime, String, Text, ForeignKey, func
 
-
 from .db import db
 
 
@@ -64,39 +63,43 @@ class RRA(db.Model):
     dismantling_tank = db.relationship('CheckStatus', foreign_keys=[dismantling_tank_check])
 
     relationship_filters = [("category", AutoCategory)]
-    
+
+    columns = (
+        ("category", "Категория авто"),
+        ("brand", "Марка"),
+        ("model", "Модель"),
+        ("year", "Год выпуска"),
+        ("mounting", "Возможность установки"),
+        ("monitoring", "Мониторинг"),
+        ("safe_block", "Безопасная блокиовка"),
+        ("danger_block", "Опасная блокировка"),
+        ("CAN", "CAN"),
+        ("default_fuel_sens", "Штатный ДУТ"),
+        ("fuel_sens", "ДУТ"),
+        ("dismantling_tank", "Демонтаж бака"),
+        ("first_tank_volume", "Первый бак, л."),
+        ("second_tank_volume", "Второй бак, л."),
+        ("third_tank_volume", "Третий бак, л."),
+        ("temp_sens", "Датчик температуры"),
+        ("reed_switch", "Геркон"),
+        ("angle_sens", "Датчик угла наклона"),
+        ("equipment", "Установленное борудование"),
+        ("pyrus_link", "Pyrus"),
+        ("docs", "Материалы"),
+        ('note', "Примечание"),
+        ("created_at", "Дата создания"),
+        ("updated_at", "Дата изменения")
+    )
+
     column_labels = dict(
-        category="Категория авто",
-        brand="Марка",
-        model="Модель",
-        year="Год выпуска",
-        monitoring="Мониторинг",
-        safe_block="Безопасная блокиовка",
-        danger_block="Опасная блокировка",
-        CAN="CAN",
-        default_fuel_sens="Штатный ДУТ",
-        fuel_sens="ДУТ",
-        temp_sens="Датчик температуры",
-        reed_switch="Геркон",
-        angle_sens="Датчик угла наклона",
-        first_tank_volume="Первый бак, л.",
-        second_tank_volume="Второй бак, л.",
-        third_tank_volume="Третий бак, л.",
-        dismantling_tank="Демонтаж бака",
-        equipment="Установленное борудование",
-        mounting="Возможность установки",
-        pyrus_link="Pyrus",
-        docs="Материалы",
-        note="Примечание",
-        created_at="Дата создания",
-        updated_at="Дата изменения"
+        columns
     )
     column_labels.update(
         {
             "category.name": "Категория авто"
         }
     )
+    column_list = [col for col, label in columns]
 
     def __str__(self):
         return f"{self.brand} {self.model} {self.year}"
-
