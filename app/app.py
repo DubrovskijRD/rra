@@ -9,7 +9,7 @@ from app.views.admin import admin_views
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path='/rra/src')
     app.config.from_pyfile('config.py')
     db.init_app(app)
     babel = Babel(app, default_locale="ru")
